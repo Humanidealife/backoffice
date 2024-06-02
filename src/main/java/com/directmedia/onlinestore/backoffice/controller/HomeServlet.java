@@ -34,7 +34,11 @@ public class HomeServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         PrintWriter out = response.getWriter();
-        out.print("<html><body><h1>OnlineStore - Gestion de la boutique</h1></body></html>");
+        out.print("<html><body><h1>OnlineStore - Gestion de la boutique</h1>");
+        
+        out.print("<a href=\"catalogue\">Catalogue des oeuvres</a>");
+        out.print("</body></html>");
+        
     }
 
 
