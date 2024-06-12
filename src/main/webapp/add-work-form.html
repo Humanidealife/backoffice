@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
+-->
+<html>
+    <head>
+        <!-- cette balise "title" correspond au title qui va s'affichier dans le navigateur pour cette page -->
+        <title>Ajouter une oeuvre au catalogue</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <!-- pour le contenu de la balise "body", il va s'agir d'ajouter la balise "form" avec une "action" 
+            qui correspond à l'URL de la Servlet qui ve recevoir les données saisies.
+        -->
+        <form action="add-work">
+            <!-- à l'intérieur de la balise "form" autant de balise "input" que de champs de saisies -->
+            <!-- le premier champ de saisie va permettre d'envoyer à la Servlet la valeur du titre de l'oeuvre
+            on va nommer le paramètre "title". C'est ce "title" qui va être reçu par la Servlet.
+            On va préfixer ce champ de saisie par un petit libellé qui va expliquer à l'utilisateur 
+            ce qu'il doit saisir dans ce champs -->
+            <label for="title">Titre :</label> 
+            <input type="text" id="title" name="title"><br>
+            
+            <label for="release">Année de sortie :</label> 
+            <input type="text" id="release" name="release"><br>
+            
+            <label for="genre">Genre :</label> 
+            <input type="text" id="genre" name="genre"><br>
+            
+            <label for="summary">Résumé :</label> 
+            <input type="text" id="summary" name="summary"><br>
+            
+            <label for="artist">Artiste principal :</label> 
+            <input type="text" id="artist" name="artist"><br>
+            
+            <!-- il faut finir par un bouton auquel on peut donner un libellé comme "Ajouter" -->
+            <input type="submit" value="Ajouter">
+        </form>
+    </body>
+</html>
