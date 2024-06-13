@@ -4,6 +4,7 @@
  */
 package com.directmedia.onlinestore.backoffice.controller;
 
+import com.directmedia.onlinestore.core.entity.Work;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -32,6 +33,14 @@ public class AddWorkServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        //Bien évidemment avant de fournir une réponse, il va fallor que l'on crée cette nouvelle oeuvre et 
+        //  que l'on l'ajoute au catalogue. 
+        //Pour créer l'oeuvre, on peut profiter de la construction de cette nouvelle oeuvre 
+        //  pour passer en paramètre le titre de l'oeuvre. 
+        //  Et le paramètre qui nous a envoyé au travers de la requête en provenance duformulaire s'appelle "title"
+        Work nouvelleOeuvre = new Work (request.getParameter("title"));
+        
+        
         response.setContentType("text/html;charset=UTF-8");
         //Comme on pourrait avoir beaucoup de ligne de code HTML, il serait plus lisible d'écrire ces lignes de HTML
         //  avec un "text blocks"
