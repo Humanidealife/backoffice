@@ -36,7 +36,9 @@ public class HomeServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         out.print("<html><body><h1>OnlineStore - Gestion de la boutique</h1>");
         
-        out.print("<a href=\"catalogue\">Catalogue des oeuvres</a>");
+        out.print("<a href=\"catalogue\">Catalogue des oeuvres</a><br>");
+        out.print("<a href=\"add-work-form.html\">Ajouter une oeuvre au catalogue</a>");
+        
         out.print("</body></html>");
         
     }
