@@ -4,6 +4,8 @@
  */
 package com.directmedia.onlinestore.backoffice.controller;
 
+import com.directmedia.onlinestore.core.entity.Artist;
+import com.directmedia.onlinestore.core.entity.Catalogue;
 import com.directmedia.onlinestore.core.entity.Work;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -37,8 +39,27 @@ public class AddWorkServlet extends HttpServlet {
         //  que l'on l'ajoute au catalogue. 
         //Pour créer l'oeuvre, on peut profiter de la construction de cette nouvelle oeuvre 
         //  pour passer en paramètre le titre de l'oeuvre. 
-        //  Et le paramètre qui nous a envoyé au travers de la requête en provenance duformulaire s'appelle "title"
+        //  Et le paramètre qui nous a envoyé au travers de la requête en provenance du formulaire s'appelle "title"
         Work nouvelleOeuvre = new Work (request.getParameter("title"));
+        //On va également valoriser toutes les autres propriétés de nouvelleOeuvre
+        nouvelleOeuvre.setGenre(request.getParameter("genre"));
+        //Il faut transformer cette String en "int", on peut noter ici que le "Integer.parseInt" peut ne pas fonctionner, 
+        //  si l'administrateur entre dans le champ de saisie HTML n'importe quoi, par exemple les lettres, "Interger.parseInt"
+        //  va générer une exception. (En général, on préfère que l'utilisateur reçoive un message pour lui dire que une année de 
+        //  sortie devrait être au format numérique. Mais ce message pourrait être généré au niveau du formulaire ou au niveau BD ! )
+        nouvelleOeuvre.setRelease(Integer.parseInt(request.getParameter("release")));
+        nouvelleOeuvre.setSummary(request.getParameter("summary"));
+        //Alors ici, il va falloir instancier un Objet de type "Artist", parce que'il faut que l'on passe un Objet de type "Artist" 
+        //  en paramètre afin de créer la propriété "mainArtist" pour la "nouvelleOeuvre".
+        //  Et dasn le constructeur de "Artist", on passe en paramètre "artist" qui est récupéré par le formulaire.
+        nouvelleOeuvre.setMainArtist(new Artist(request.getParameter("artist")));
+        
+        //Maintenant on va ajouter cette "nouvelleOeuvre" au "Catalogue", il ne faut pas se tromper de Class 
+        //  (à importer pour "Catalogue") qui vient de "core.entity"
+        //En ce qui concerne l'"id", notre "nouvelleOeuvre" n'a pas encore de "id"
+        //Mais comme ce qui est indiqué dans le sujet, on va essayer de fournir une solution qui permet automatiquement d'attribuer
+        //  un "id" à ces nouvelles oeuvres (mais pour faire cela, il faut retourner dans le module "core" et puis dans la CLass "Work")
+        Catalogue.listOfWorks.add(nouvelleOeuvre);
         
         
         response.setContentType("text/html;charset=UTF-8");
