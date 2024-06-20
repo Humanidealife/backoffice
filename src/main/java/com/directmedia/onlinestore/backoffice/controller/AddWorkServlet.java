@@ -33,7 +33,7 @@ public class AddWorkServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //Bien évidemment avant de fournir une réponse, il va fallor que l'on crée cette nouvelle oeuvre et 
         //  que l'on l'ajoute au catalogue. 
