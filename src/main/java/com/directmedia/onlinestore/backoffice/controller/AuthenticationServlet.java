@@ -11,6 +11,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 /**
  *
@@ -44,6 +45,13 @@ public class AuthenticationServlet extends HttpServlet {
            
             //Quand l'authentification est un succès, on écrit un lien pour retourner à l'accueil
            out.print("Bonjour " + login + " ! Vous êtes connecté(e) avecc succès !<br>");
+           //Dans le bloc qui correspond à une authentification avec succès
+           //On va d'abord récupérer cet Objet de Session. Pour rappel, "request.getSession()" va récupérer une Session existante si celle-ci a déjà été générée; 
+           //  dans le cas contraire "request.getSession()" va en créer une nouvelle. 
+            HttpSession session = request.getSession();
+           //Dans cet Objet de Session "session" on va stocker le "login" de l'utilisateur connecté (c'est le deuxième argument de cette méthode, c'est donc login)
+           //  grâce à "setAttribute()". La "clé" est complètemet libre, icic on la met en "login".
+           session.setAttribute("login", login);
            out.print("<a href=\"home\">Retourner à la page d'accueil</a>");
         }
         else{
