@@ -11,6 +11,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 /**
  *
@@ -35,13 +36,14 @@ public class HomeServlet extends HttpServlet {
             throws ServletException, IOException {
         PrintWriter out = response.getWriter();
         out.print("<html><body><h1>OnlineStore - Gestion de la boutique</h1>");
-        
+        //Juste en dessous du tire de la page, on affiche la phrase de bienvenue personnaisée 
+        HttpSession session = request.getSession();
+        String login = (String)session.getAttribute("login");
+        out.print("Bonjour " + login + "<br>");
         out.print("<a href=\"catalogue\">Catalogue des oeuvres</a><br>");
         out.print("<a href=\"add-work-form.html\">Ajouter une oeuvre au catalogue</a>");
         
         out.print("</body></html>");
         
     }
-
-
 }
