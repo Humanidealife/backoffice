@@ -34,6 +34,7 @@ public class HomeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         out.print("<html><body><h1>OnlineStore - Gestion de la boutique</h1>");
         //Juste en dessous du tire de la page, on affiche la phrase de bienvenue personnaisée 
