@@ -40,7 +40,7 @@ public class HomeServlet extends HttpServlet {
         //Juste en dessous du tire de la page, on affiche la phrase de bienvenue personnaisée 
         HttpSession session = request.getSession();
         String login = (String)session.getAttribute("login");
-        out.print("Bonjour " + login + "<br>");
+        out.print("Bonjour " + login + "(<a href=\"logout\">Déconnexion</a>)<br>");
         out.print("<a href=\"catalogue\">Catalogue des oeuvres</a><br>");
         out.print("<a href=\"add-work-form.html\">Ajouter une oeuvre au catalogue</a>");
         
