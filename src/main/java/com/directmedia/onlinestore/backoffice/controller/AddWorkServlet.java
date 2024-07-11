@@ -63,30 +63,7 @@ public class AddWorkServlet extends HttpServlet {
         
         
         response.setContentType("text/html;charset=UTF-8");
-        //Comme on pourrait avoir beaucoup de ligne de code HTML, il serait plus lisible d'écrire ces lignes de HTML
-        //  avec un "text blocks"
-        try (PrintWriter out = response.getWriter()){
-            String htmlReponse = """
-                <!DOCTYPE html>
-                <!--
-                Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-                Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
-                -->
-                <html>
-                    <head>
-                        <!-- cette balise "title" correspond au title qui va s'affichier dans le navigateur pour cette page -->
-                        <title>Ėtat d'ajout de l'oeuvre</title>
-                        <meta charset="UTF-8">
-                        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                    </head>
-                    <body>
-                        L'oeuvre a été ajoutée avec succès !<br>
-                        <a href="home">Cliquer ici pour retourner à la page d'accueil</a>
-                    </body>
-                </html>
-                                 """;
-            out.println(htmlReponse);
-        }
+        
         
     }
 
