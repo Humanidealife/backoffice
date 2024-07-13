@@ -35,6 +35,9 @@ public class AddWorkServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        //On va d'abord créer un "boolean" qui s'appelle "succcess" et il est initialisé en "true".
+        boolean success = true;
+        
         //Bien évidemment avant de fournir une réponse, il va fallor que l'on crée cette nouvelle oeuvre et 
         //  que l'on l'ajoute au catalogue. 
         //Pour créer l'oeuvre, on peut profiter de la construction de cette nouvelle oeuvre 
@@ -47,7 +50,16 @@ public class AddWorkServlet extends HttpServlet {
         //  si l'administrateur entre dans le champ de saisie HTML n'importe quoi, par exemple les lettres, "Interger.parseInt"
         //  va générer une exception. (En général, on préfère que l'utilisateur reçoive un message pour lui dire que une année de 
         //  sortie devrait être au format numérique. Mais ce message pourrait être généré au niveau du formulaire ou au niveau BD ! )
-        nouvelleOeuvre.setRelease(Integer.parseInt(request.getParameter("release")));
+        
+        //On va tester que l'année de parution soit bien un entier en utilisant un "try" "catch" autour de l'instruction qui effectue
+        //  la conversion "Integer.parseInt"
+        try{
+            nouvelleOeuvre.setRelease(Integer.parseInt(request.getParameter("release")));
+        }
+        //Dans ce cas d'exception, on va passer simplment "success" à "false"
+        catch(NumberFormatException nfe){
+            success = false;
+        }
         nouvelleOeuvre.setSummary(request.getParameter("summary"));
         //Alors ici, il va falloir instancier un Objet de type "Artist", parce que'il faut que l'on passe un Objet de type "Artist" 
         //  en paramètre afin de créer la propriété "mainArtist" pour la "nouvelleOeuvre".
@@ -59,8 +71,11 @@ public class AddWorkServlet extends HttpServlet {
         //En ce qui concerne l'"id", notre "nouvelleOeuvre" n'a pas encore de "id"
         //Mais comme ce qui est indiqué dans le sujet, on va essayer de fournir une solution qui permet automatiquement d'attribuer
         //  un "id" à ces nouvelles oeuvres (mais pour faire cela, il faut retourner dans le module "core" et puis dans la CLass "Work")
-        Catalogue.listOfWorks.add(nouvelleOeuvre);
         
+        //On ne va bien sûr ajouter l'oeuvre au catalogue que si "success" vaut "true"
+        if (success){
+            Catalogue.listOfWorks.add(nouvelleOeuvre);
+        }
         
         response.setContentType("text/html;charset=UTF-8");
         
