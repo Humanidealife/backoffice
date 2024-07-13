@@ -14,6 +14,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.Optional;
 
 /**
  *
@@ -71,6 +72,27 @@ public class AddWorkServlet extends HttpServlet {
         //En ce qui concerne l'"id", notre "nouvelleOeuvre" n'a pas encore de "id"
         //Mais comme ce qui est indiqué dans le sujet, on va essayer de fournir une solution qui permet automatiquement d'attribuer
         //  un "id" à ces nouvelles oeuvres (mais pour faire cela, il faut retourner dans le module "core" et puis dans la CLass "Work")
+        
+        //Deuxième critère à vérifier, vérifier que l’œuvre que l’on souhaite ajouter au catalogue n’existe pas déjà dans notre catalogue. 
+        //Pour ce faire, il faut aller voir dans le catalogue s'il existe une autre oeuvre qui a des mêmes attributs. 
+        //On doit donc itérer sur le catalogue, (On va faire avec et sans l'API "stream")
+        
+        //1. Sans l'API "stream"
+        /*for (Work work : Catalogue.listOfWorks){
+            if (work.getTitle().equals(nouvelleOeuvre.getTitle()) && work.getRelease() == nouvelleOeuvre.getRelease() && 
+                    work.getMainArtist().getName().equals(nouvelleOeuvre.getMainArtist().getName())){
+                success = false;
+            }
+        }*/
+        
+        //2. Avec l'API "stream". Il va s'agir de filtrer les oeuvres du Catalogue en recherchant une oeuvre qui respecterait les
+        //  conditions que l'on avait utilisées.
+        Optional<Work> optionalWork = Catalogue.listOfWorks.stream().filter(work -> work.getTitle().equals(nouvelleOeuvre.getTitle()) && 
+                work.getRelease() == nouvelleOeuvre.getRelease() && work.getMainArtist().getName().equals(nouvelleOeuvre.getMainArtist().getName())).findAny();
+        //S'il existe effectivement déjà une oeuvre au cataolgue avec ces critères, on va passer "success" à "false".
+        if (optionalWork.isPresent()){
+            success = false;
+        }
         
         //On ne va bien sûr ajouter l'oeuvre au catalogue que si "success" vaut "true"
         if (success){
