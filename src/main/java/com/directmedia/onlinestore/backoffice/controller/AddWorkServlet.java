@@ -7,6 +7,7 @@ package com.directmedia.onlinestore.backoffice.controller;
 import com.directmedia.onlinestore.core.entity.Artist;
 import com.directmedia.onlinestore.core.entity.Catalogue;
 import com.directmedia.onlinestore.core.entity.Work;
+import jakarta.servlet.RequestDispatcher;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -94,14 +95,23 @@ public class AddWorkServlet extends HttpServlet {
             success = false;
         }
         
+        //On veut maintenant produire un résultat en fonction des états de « success » : « true » ou « false ».
+        
         //On ne va bien sûr ajouter l'oeuvre au catalogue que si "success" vaut "true"
+        
+        RequestDispatcher disp = null;
         if (success){
             Catalogue.listOfWorks.add(nouvelleOeuvre);
+            //On va donc nous diriger vers la Servlet "WorkAddedSuccessServlet"
+            disp = request.getRequestDispatcher("/work-added-success");    
+        }
+        //Dans le cas d'échec
+        else{
+            disp = request.getRequestDispatcher("work-added-failure");
         }
         
+        disp.forward(request, response);
+        
         response.setContentType("text/html;charset=UTF-8");
-        
-        
     }
-
 }
