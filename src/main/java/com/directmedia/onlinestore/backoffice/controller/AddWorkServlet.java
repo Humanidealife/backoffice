@@ -103,6 +103,9 @@ public class AddWorkServlet extends HttpServlet {
         if (success){
             Catalogue.listOfWorks.add(nouvelleOeuvre);
             //On va donc nous diriger vers la Servlet "WorkAddedSuccessServlet"
+            
+            //Juste avant d'utiliser le "RequestDispatcher" on va ajouter
+            request.setAttribute("identifiantOeuvre", nouvelleOeuvre.getId());
             disp = request.getRequestDispatcher("/work-added-success");    
         }
         //Dans le cas d'échec
