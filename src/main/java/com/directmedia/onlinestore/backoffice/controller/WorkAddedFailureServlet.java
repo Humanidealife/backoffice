@@ -25,6 +25,6 @@ public class WorkAddedFailureServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         out.print("<html><body> Une erreur est survenue, l'oeuvre n'a pas été ajoutée !<br>");
-        out.print("<a href=\"home\">Cliquer ici pour retourner à la page d'accueil</a></body></html>");
+        out.print("<a href=\"home.jsp\">Cliquer ici pour retourner à la page d'accueil</a></body></html>");
     }
 }

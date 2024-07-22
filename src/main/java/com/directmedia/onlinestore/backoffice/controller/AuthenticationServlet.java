@@ -52,7 +52,7 @@ public class AuthenticationServlet extends HttpServlet {
            //Dans cet Objet de Session "session" on va stocker le "login" de l'utilisateur connecté (c'est le deuxième argument de cette méthode, c'est donc login)
            //  grâce à "setAttribute()". La "clé" est complètemet libre, icic on la met en "login".
            session.setAttribute("login", login);
-           out.print("<a href=\"home\">Retourner à la page d'accueil</a>");
+           out.print("<a href=\"home.jsp\">Retourner à la page d'accueil</a>");
         }
         else{
            out.print("l'identifiant et/ou le mot de passe erroné(s)<br>");
