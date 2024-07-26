@@ -32,7 +32,7 @@
                 Bonjour <%=login%>
                 <button onclick="window.location.href='logout'">Déconnexion</button><br>
             <%}%>
-        <a href="catalogue">Catalogue des oeuvres</a><br>
+        <a href="catalogue.jsp">Catalogue des oeuvres</a><br>
         <a href="add-work-form.html">Ajouter une oeuvre au catalogue</a>
     </body>
 </html>
