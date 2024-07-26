@@ -37,6 +37,6 @@ public class WorkAddedSuccessServlet extends HttpServlet {
         //  qui s'appelle "identifiantOeuvre". Cet attribut est fourni évidemment par la Servlet "AddWorkServlet"
         out.print("<body>L'oeuvre a été ajoutée avec succès ! Son identifiant (interne) est :");
         out.print(" "+request.getAttribute("identifiantOeuvre")+"<br>");
-        out.print("<a href=\"catalogue\">Retournner au Catalogue des oeuvres</a></body></html>");
+        out.print("<a href=\"catalogue.jsp\">Retournner au Catalogue des oeuvres</a></body></html>");
     }
 }
