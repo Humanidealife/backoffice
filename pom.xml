@@ -27,6 +27,7 @@
             <groupId>com.directmedia.onlinestore</groupId>
             <artifactId>core</artifactId>
             <version>1.0</version>
+            <type>jar</type>
         </dependency>
     </dependencies>
     
