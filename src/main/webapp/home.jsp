@@ -29,7 +29,7 @@
             String login = (String)session.getAttribute("login");
             //Dans le cas la personne est identifiée, on ferme notre "scriptlet"
             if(login!=null){%>
-                Bonjour <%=login%>
+            Bonjour ${sessionScope.login}
                 <button onclick="window.location.href='logout'">Déconnexion</button><br>
             <%}%>
         <a href="catalogue.jsp">Catalogue des oeuvres</a><br>
