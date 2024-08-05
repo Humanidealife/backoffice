@@ -25,15 +25,21 @@
         que cette personne est réellement identifié.(Ceci n'est pas demandé dans l'exercice)
         -->
         
-        <%
-            //On va mettre le "login" dans une variable, mais on est le seul à savoir que le "login" est un String, 
-            //  il faut castrer le résultat.
-            String login = (String)session.getAttribute("login");
-            //Dans le cas la personne est identifiée, on ferme notre "scriptlet"
-            if(login!=null){%>
+        <!-- 
+        Dans cette balise on va exprimer la condition dans un attribut qui s'appelle "test", et on va exprimer cette condition au
+          travers des JSP EL. Ce qui nous intéresse ici en l'occurence, c'est de savoir qu'il existe bien en Session un attribut qui
+          s'appelle "login". "not empty login" sigifie "vérifier qu'il existe dans un Scope, n'importe lequel, un attribut qui n'est 
+          pas vide (si c'est une String vide, cela ne marcherait pas) qui s'appelle "login".
+        Cette syntaxe "not empty login", on ne peut pas l'inventer. Pour référence, on peut consulter une documentation officielle pour 
+          syntaxe des JSP EL. On a certain mots clés comme "empty" ou autre.
+        Lorsque la condition est respectée, on pourrait faire certain nombre de choses, par exemple, "afficher du contenu".
+        -->
+        <c:if test="${not empty login}">
+        
             Bonjour ${sessionScope.login}
                 <button onclick="window.location.href='logout'">Déconnexion</button><br>
-            <%}%>
+        <!-- Pour terminer la balise de "if" -->
+        </c:if>
         <a href="catalogue.jsp">Catalogue des oeuvres</a><br>
         <a href="add-work-form.html">Ajouter une oeuvre au catalogue</a>
     </body>
