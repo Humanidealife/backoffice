@@ -7,6 +7,7 @@ package com.directmedia.onlinestore.backoffice.controller;
 import com.directmedia.onlinestore.core.entity.Artist;
 import com.directmedia.onlinestore.core.entity.Catalogue;
 import com.directmedia.onlinestore.core.entity.Work;
+import jakarta.servlet.RequestDispatcher;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -37,7 +38,7 @@ public class CatalogueServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
+        //PrintWriter out = response.getWriter();
         
         if (Catalogue.listOfWorks.isEmpty()){
         
@@ -74,13 +75,21 @@ public class CatalogueServlet extends HttpServlet {
         Catalogue.listOfWorks.add(leGendarmeDeSaintTropez);
         }
         
-        out.print("<html><body><h1>Oeuvres au catalogue</h1><BR/><BR/>");
+        //Juste après ce catalogue par défaut, on va faire un "request.setAttribute"
+        request.setAttribute("listeDesOeuvres", Catalogue.listOfWorks);
+        //Il va falloir ensuite passer la main à la JSP au travers d'un "RequestDispatcher"
+        RequestDispatcher disp = request.getRequestDispatcher("/catalogue.jsp");
+        //Pour y aller pour de vrai
+        disp.forward(request, response);
+        
+        
+        /*out.print("<html><body><h1>Oeuvres au catalogue</h1><BR/><BR/>");
         
         for (Work work : Catalogue.listOfWorks) {
             out.println(work.getTitle()+ "("+work.getRelease()+ ")<BR/>");
         }
         
-        out.print("</body></html>");
+        out.print("</body></html>");*/
     }
         
 
