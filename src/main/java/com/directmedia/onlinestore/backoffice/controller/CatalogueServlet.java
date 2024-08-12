@@ -78,7 +78,7 @@ public class CatalogueServlet extends HttpServlet {
         //Juste après ce catalogue par défaut, on va faire un "request.setAttribute"
         request.setAttribute("listeDesOeuvres", Catalogue.listOfWorks);
         //Il va falloir ensuite passer la main à la JSP au travers d'un "RequestDispatcher"
-        RequestDispatcher disp = request.getRequestDispatcher("/catalogue.jsp");
+        RequestDispatcher disp = request.getRequestDispatcher("/WEB-INF/catalogue.jsp");
         //Pour y aller pour de vrai
         disp.forward(request, response);
         
