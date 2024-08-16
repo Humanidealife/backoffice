@@ -23,6 +23,6 @@
         <c:forEach items="${requestScope.listeDesOeuvres}" var="work">
             ${work.title} (${work.release})<BR/>
         </c:forEach>
-            
+        <a href="home.jsp">Retourner à la page d'accueil</a><br>    
     </body>
 </html>
