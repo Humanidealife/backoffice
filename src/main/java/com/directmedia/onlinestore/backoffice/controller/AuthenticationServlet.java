@@ -54,6 +54,7 @@ public class AuthenticationServlet extends HttpServlet {
            session.setAttribute("login", login);
            out.print("<a href=\"home.jsp\">Retourner à la page d'accueil</a>");
         }
+        //Ici ne respecte pas encore le MVC.
         else{
            out.print("l'identifiant et/ou le mot de passe erroné(s)<br>");
            out.print("<a href=\"login.html\">Vous pouvez réessayer de vous connecter en cliquant sur ce lien !</a>");
