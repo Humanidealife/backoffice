@@ -40,7 +40,7 @@
                 <button onclick="window.location.href='logout'">Déconnexion</button><br>
         <!-- Pour terminer la balise de "if" -->
         </c:if>
-        <a href="catalogue">Catalogue des oeuvres</a><br>
+        <a href="catalogue">Afficher le catalogue des oeuvres</a><br>
         <a href="add-work-form.html">Ajouter une oeuvre au catalogue</a>
     </body>
 </html>
