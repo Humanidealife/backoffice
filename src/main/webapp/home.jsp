@@ -12,6 +12,9 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Onlinestore - Accueil du back-office</title>
+        <!-- ces balises sont nécessaires afin de pouvoir utiliser les fichiers JavaScript  -->
+            <script src="js/jquery-3.7.1.min.js"></script>
+            <script src="js/application.js"></script>
     </head>
     <body>
         <h1>OnlineStore - Gestion de la boutique</h1>
